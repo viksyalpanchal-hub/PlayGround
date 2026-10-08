@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+<meta name="mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+<meta name="theme-color" content="#1a0f2e" />
+<title>Temple Dash 3D — Endless Runner</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🏛️</text></svg>" />
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+<div id="game-wrap">
+  <canvas id="game-canvas"></canvas>
+
+  <!-- HUD -->
+  <div id="hud" class="hidden">
+    <div id="hud-top">
+      <div class="hud-left">
+        <div id="score">0</div>
+        <div id="best-line">BEST <span id="hud-best">0</span></div>
+      </div>
+      <div class="hud-right">
+        <div id="coins"><span class="coin-icon">●</span><span id="coin-count">0</span></div>
+        <button id="btn-mute" class="icon-btn" aria-label="Mute">🔊</button>
+        <button id="btn-pause" class="icon-btn" aria-label="Pause">⏸</button>
+      </div>
+    </div>
+    <div id="power-bar"></div>
+  </div>
+
+  <!-- Touch controls (shown on touch devices) -->
+  <div id="touch-controls" class="hidden">
+    <div class="tc-group">
+      <button class="tc-btn" id="tc-left" aria-label="Move left">◀</button>
+      <button class="tc-btn" id="tc-right" aria-label="Move right">▶</button>
+    </div>
+    <div class="tc-group">
+      <button class="tc-btn" id="tc-slide" aria-label="Slide">⤓</button>
+      <button class="tc-btn" id="tc-jump" aria-label="Jump">⤒</button>
+    </div>
+  </div>
+
+  <!-- Flash / vignette effects -->
+  <div id="flash"></div>
+  <div id="vignette"></div>
+
+  <!-- Main menu -->
+  <div id="menu" class="overlay">
+    <div class="panel">
+      <div class="game-logo">🏛️</div>
+      <h1>TEMPLE DASH</h1>
+      <p class="subtitle">Endless 3D Runner</p>
+      <div class="best-box">🏆 BEST: <span id="menu-best">0</span></div>
+      <button id="btn-play" class="big-btn">▶ &nbsp;RUN!</button>
+      <div class="howto">
+        <div class="howto-row"><span>◀ ▶ swipe</span><em>switch lane</em></div>
+        <div class="howto-row"><span>▲ swipe / tap ⤒</span><em>jump barriers &amp; fire</em></div>
+        <div class="howto-row"><span>▼ swipe</span><em>slide under blades</em></div>
+        <div class="howto-row"><span>KEYS &#8592; &#8594; &#8593; &#8595;</span><em>keyboard works too</em></div>
+      </div>
+      <p class="tip">Grab coins • dodge the ruins • outrun the curse!</p>
+    </div>
+  </div>
+
+  <!-- Pause -->
+  <div id="pause-menu" class="overlay hidden">
+    <div class="panel">
+      <h2>⏸ PAUSED</h2>
+      <button id="btn-resume" class="big-btn">▶ &nbsp;RESUME</button>
+      <button id="btn-restart-pause" class="ghost-btn">↻ RESTART</button>
+      <button id="btn-quit-pause" class="ghost-btn">🏠 MENU</button>
+    </div>
+  </div>
+
+  <!-- Game over -->
+  <div id="gameover" class="overlay hidden">
+    <div class="panel">
+      <h2>💥 YOU CRASHED!</h2>
+      <p class="subtitle" id="death-cause">Smashed into a ruin</p>
+      <div class="stats">
+        <div class="stat"><span>SCORE</span><b id="final-score">0</b></div>
+        <div class="stat"><span>COINS</span><b id="final-coins">0</b></div>
+        <div class="stat"><span>DISTANCE</span><b id="final-dist">0m</b></div>
+      </div>
+      <div id="new-best" class="hidden">🎉 NEW BEST! 🎉</div>
+      <button id="btn-again" class="big-btn">↻ &nbsp;RUN AGAIN</button>
+      <button id="btn-quit-over" class="ghost-btn">🏠 MENU</button>
+    </div>
+  </div>
+
+  <div id="webgl-error" class="overlay hidden">
+    <div class="panel"><h2>😢 No WebGL</h2><p>Your browser could not start WebGL, which this 3D game needs.</p></div>
+  </div>
+</div>
+<script type="module" src="game.js"></script>
+</body>
+</html>
